@@ -1,0 +1,76 @@
+{
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:lambdaV2}",
+            "name": "Debug lambdaV2",
+            "program": "${workspaceFolder:lambdaV2}/.build/debug/lambdaV2",
+            "preLaunchTask": "swift: Build Debug lambdaV2"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:lambdaV2}",
+            "name": "Release lambdaV2",
+            "program": "${workspaceFolder:lambdaV2}/.build/release/lambdaV2",
+            "preLaunchTask": "swift: Build Release lambdaV2"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:lambdaV2}",
+            "name": "Debug StreamingResponse",
+            "program": "${workspaceFolder:lambdaV2}/.build/debug/StreamingResponse",
+            "preLaunchTask": "swift: Build Debug StreamingResponse"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:lambdaV2}",
+            "name": "Release StreamingResponse",
+            "program": "${workspaceFolder:lambdaV2}/.build/release/StreamingResponse",
+            "preLaunchTask": "swift: Build Release StreamingResponse"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:lambdaV2}",
+            "name": "Debug Infra",
+            "program": "${workspaceFolder:lambdaV2}/.build/debug/Infra",
+            "preLaunchTask": "swift: Build Debug Infra"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:lambdaV2}",
+            "name": "Release Infra",
+            "program": "${workspaceFolder:lambdaV2}/.build/release/Infra",
+            "preLaunchTask": "swift: Build Release Infra"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:lambdaV2}",
+            "name": "Debug BackgroundExecution",
+            "program": "${workspaceFolder:lambdaV2}/.build/debug/BackgroundExecution",
+            "preLaunchTask": "swift: Build Debug BackgroundExecution"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:lambdaV2}",
+            "name": "Release BackgroundExecution",
+            "program": "${workspaceFolder:lambdaV2}/.build/release/BackgroundExecution",
+            "preLaunchTask": "swift: Build Release BackgroundExecution"
+        }
+    ]
+}

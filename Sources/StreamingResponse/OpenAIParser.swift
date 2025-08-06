@@ -8,11 +8,11 @@
 import Foundation
 
 struct OpenAIParser {
-        func parse(_ text: String) -> [Event] {
+    func parse(_ text: String) -> [Event] {
         var events: [Event] = []
         var currentEventType: String?
         var currentEventData: String = ""
-        
+
         for line in text.split(separator: "\n", omittingEmptySubsequences: false) {
             if line.starts(with: "event: ") {
                 currentEventType = String(line.dropFirst("event: ".count))
@@ -20,8 +20,8 @@ struct OpenAIParser {
                 currentEventData = String(line.dropFirst("data: ".count))
             } else if line.isEmpty {
                 // End of current event
-                if let eventType = currentEventType, 
-                   !currentEventData.isEmpty,
+                if let eventType = currentEventType,
+                    !currentEventData.isEmpty,
                    let jsonData = currentEventData.data(using: .utf8) {
                     let event = Event(type: EventType(eventType), data: jsonData)
                     events.append(event)
@@ -30,7 +30,7 @@ struct OpenAIParser {
                 currentEventData = ""
             }
         }
-        
+
         // Handle last event if there's no trailing empty line
         if let eventType = currentEventType,
            !currentEventData.isEmpty,
@@ -38,7 +38,7 @@ struct OpenAIParser {
             let event = Event(type: EventType(eventType), data: jsonData)
             events.append(event)
         }
-        
+
         return events
     }
 }

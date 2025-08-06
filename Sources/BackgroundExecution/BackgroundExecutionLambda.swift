@@ -1,6 +1,5 @@
 import AWSLambdaEvents
 import AWSLambdaRuntime
-import LambdaExtras
 import Foundation
 
 @main
@@ -32,7 +31,7 @@ struct BackgroundExecutionLambda: LambdaWithBackgroundProcessingHandler {
         }
 
         let result = "Sending message: \"\(requestPayload.text)\""
-        let response = try Output.encoding(Response(result: result))
+        let response = Output.encoding(Response(result: result))
         try await outputWriter.write(response)
 
         context.logger.info("Response returned. Will now send external HTTP Request")

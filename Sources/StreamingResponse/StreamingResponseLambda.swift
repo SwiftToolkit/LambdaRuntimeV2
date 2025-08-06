@@ -33,7 +33,6 @@ struct StreamingResponseLambda: StreamingLambdaHandlerWithEvent {
         }
 
         do {
-            context.logger.info("Will start streaming")
             for try await delta in response {
                 try await responseWriter.write(ByteBuffer(string: delta))
             }

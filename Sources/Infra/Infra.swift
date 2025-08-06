@@ -8,8 +8,8 @@ struct Infra: AWSProject {
             targetName: "BackgroundExecution",
             url: .enabled(),
             environment: [
-                "TELEGRAM_BOT_TOKEN": "",
-                "TELEGRAM_CHAT_ID": ""
+                "TELEGRAM_BOT_TOKEN": "<bot-token>",
+                "TELEGRAM_CHAT_ID": "<chat-id>"
             ]
         )
 
@@ -19,7 +19,7 @@ struct Infra: AWSProject {
             url: .enabled(invokeMode: .streaming),
             timeout: .seconds(15),
             environment: [
-                "OPEN_AI_KEY": ""
+                "OPEN_AI_KEY": "<open-ai-key>"
             ]
         )
 

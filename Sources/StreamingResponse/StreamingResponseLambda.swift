@@ -4,24 +4,28 @@ import Foundation
 import NIOCore
 
 @main
-struct StreamingResponseLambda: StreamingLambdaHandlerWithEvent {
+struct StreamingResponseLambda: StreamingLambdaHandler {
     static func main() async throws {
-        let adapter = StreamingLambdaCodableAdapter(handler: StreamingResponseLambda())
-        let runtime = LambdaRuntime(handler: adapter)
+        let runtime = LambdaRuntime(handler: StreamingResponseLambda())
         try await runtime.run()
     }
 
+    let eventDecoder = LambdaJSONEventDecoder(JSONDecoder())
+
     mutating func handle(
-        _ event: Request,
+        _ event: ByteBuffer,
         responseWriter: some LambdaResponseStreamWriter,
         context: LambdaContext
     ) async throws {
+        let functionURLRequest = try eventDecoder.decode(AWSLambdaEvents.FunctionURLRequest.self, from: event)
+        let request = try functionURLRequest.decodeBody(Request.self)
+
         let openAIKey = ProcessInfo.processInfo.environment["OPEN_AI_KEY"] ?? ""
         let client = OpenAIClient(apiKey: openAIKey)
         let response: AsyncThrowingStream<String, any Error>
 
         do {
-            response = try await client.prompt(event.prompt, context: context)
+            response = try await client.prompt(request.prompt, context: context)
             try await responseWriter.writeStatusAndHeaders(.init(
                 statusCode: 200,
                 headers: ["Content-Type": "text/plain"]
